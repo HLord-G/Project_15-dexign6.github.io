@@ -1,0 +1,154 @@
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:rgb(222, 222, 231);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drive_content{
+    width:1464px;
+    height:100%;
+    padding:20px 20px 0px 20px;
+
+
+    @media(max-width:1464px) {
+        width: 100%;
+    }
+    @media(max-width:425px) {
+        padding:10px 10px 0px 10px;
+    }
+
+    .drive_header{
+        padding:35px;
+    }
+
+
+
+    .drive_holder{
+        position: relative;
+        
+        .height_holder{
+            position: absolute;
+            top:0;
+            left:0;
+            border-radius: 35px 35px 0px 0px;
+            width:100%;
+            height:100vh;
+            background-color: rgb(193, 194, 224);
+        }
+
+        .drive_holder{
+            padding:55px 25px 25px 25px;
+            position: relative;
+            top:0; left:0;
+            width:100%;
+            height:100%;
+
+            border-radius: 35px 35px 0px 0px;
+            background-color: rgb(193, 194, 224);
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-flow: row;
+            flex-wrap: wrap;
+
+            gap:20px;
+
+
+            @media(max-width:425px) {
+                gap:5px;
+            }
+
+            .item{
+                width:290px;
+                height:190px;
+
+                display:inline-block;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+
+                .card_full{
+                    width:100%;
+                    height:100%;
+                    position: absolute;
+                    top:0;
+                    left:0;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-flow: row;
+
+                    .img_card{
+                        width:265.55px;
+                        height:154.83px;
+                        border: 1px solid rgba(0, 0, 0, 0.274);
+                        border-radius:21px;
+                        z-index:9999999;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        transition: .4s;
+                    }
+
+                    .img_card_a{
+                        position: absolute;
+                        border-radius:21px;
+                        width:265.55px;
+                        height:154.83px;
+                        border: 1px solid rgba(0, 0, 0, 0.274);
+                        rotate:8.38deg;
+                        background-color: rgb(41, 40, 40);
+                        transition: .4s;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    .img_card_b{
+                        position: absolute;
+                        border-radius:21px;
+                        width:265.55px;
+                        height:154.83px;
+                        rotate:-6.88deg;
+                        background-color: rgb(77, 76, 76);
+                        border: 1px solid rgba(0, 0, 0, 0.274);
+                        transition: .4s;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+
+                    &:hover{
+
+                        .img_card{
+                            background-position: bottom;
+                        }
+
+                        .img_card_a{
+                            rotate:-6.88deg;
+                        } 
+                        .img_card_b{
+                            rotate:8.38deg;
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+
+
+}
