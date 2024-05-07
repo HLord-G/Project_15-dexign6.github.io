@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -9,6 +10,75 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.popup_sums {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.664);
+  padding: 10px;
+  z-index: 99999999999999;
+  border-radius: 0px 10px 0px 0px;
+  line-height: 17px;
+  width: 290px;
+  display: none;
+  color: ghostwhite;
+  font-size: smaller;
+}
+.popup_sums p {
+  margin-bottom: 10px;
+}
+
+.view_img {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999999;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+}
+.view_img .img {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.view_img .img .img_display {
+  width: 95%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.view_img .discript {
+  background-color: rgb(135, 182, 204);
+  flex: 0.55;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+@media (max-width: 768px) {
+  .view_img {
+    flex-flow: column;
+  }
+  .view_img .discript {
+    background-color: rgb(135, 182, 204);
+    flex: 0.25;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+    border-radius: 35px 35px 0px 0px;
+  }
 }
 
 .drive_content {
@@ -31,6 +101,48 @@ body {
 }
 .drive_content .drive_holder {
   position: relative;
+}
+.drive_content .drive_holder .drive_btns {
+  position: relative;
+  top: 2%;
+  left: 0;
+  padding: 20px;
+  z-index: 9999999;
+  width: 100%;
+  border-radius: 35px 35px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+}
+.drive_content .drive_holder .drive_btns .dbtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+}
+.drive_content .drive_holder .drive_btns .dbtn .swap_data {
+  margin-right: 20px;
+}
+.drive_content .drive_holder .drive_btns .dbtn button {
+  background-color: transparent;
+  outline: 0;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 20px;
+  cursor: pointer;
+  background-color: rgba(75, 129, 247, 0.685);
+}
+.drive_content .drive_holder .drive_btns .dbtn button:hover {
+  background-color: rgba(15, 80, 221, 0.685);
+}
+@media (max-width: 528px) {
+  .drive_content .drive_holder .drive_btns .hidden_btn_android {
+    display: none;
+  }
 }
 .drive_content .drive_holder .height_holder {
   position: absolute;
@@ -92,6 +204,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.4s;
+  cursor: pointer;
 }
 .drive_content .drive_holder .drive_holder .item .card_full .img_card_a {
   position: absolute;

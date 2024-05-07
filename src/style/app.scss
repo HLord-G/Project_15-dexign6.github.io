@@ -13,6 +13,99 @@ body {
     align-items: center;
 }
 
+//======[S] HOVER POPUP
+.popup_sums{
+    position: fixed;
+    bottom:0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.664);
+    padding:10px;
+    z-index:99999999999999;
+    border-radius: 0px 10px 0px 0px;
+    line-height:17px;
+    width:290px;
+    // transition:.5s;
+    display:none;
+    color:ghostwhite;
+
+    font-size: smaller;
+
+    p{
+        margin-bottom:10px;
+    }
+}
+//======[E] HOVER POPUP
+
+
+//======[S] IMG VIEW
+.view_img{
+    position: fixed;
+    display:none;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:9999999999999;
+    background-color: black;
+
+
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+
+    .img{
+        flex:1;
+        height:100%;
+        width:100%;
+        padding:20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .img_display{
+            width:95%;
+            height:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+
+    .discript{
+        background-color: rgb(135, 182, 204);
+        flex:.55;
+        height:100%;
+        width:100%;
+        overflow: auto;
+    }
+
+
+    @media(max-width:768px) {
+
+        .discript{
+            background-color: rgb(135, 182, 204);
+            flex:.25;
+            height:100%;
+            width:100%;
+            padding:20px;
+            overflow: auto;
+            border-radius: 35px 35px 0px 0px;
+        }
+
+        flex-flow: column;
+    }
+}
+//======[E] IMG VIEW
+
+
+
+
+
+
+
+
+
+
 .drive_content {
     width: 1464px;
     height: 100%;
@@ -31,6 +124,66 @@ body {
 
     .drive_holder {
         position: relative;
+
+        .drive_btns{
+            position: relative;
+            top: 2%; left: 0;
+            padding:20px;
+            z-index: 9999999;
+            width:100%;
+            // border: 1px solid red;
+            border-radius: 35px 35px 0px 0px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: row;
+
+            
+
+            .dbtn{
+
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-flow: row;
+
+                padding:5px;
+                height:100%;
+                width:100%;
+                // border: 1px solid black;
+
+                .swap_data{
+                    margin-right:20px;
+                }
+
+
+
+                button{
+                    background-color:transparent;
+                    outline:0;
+                    border:none;
+                    border-radius:16px;
+                    padding:5px 20px;
+                    cursor: pointer;
+                    background-color:rgba(75, 129, 247, 0.685);
+
+                    &:hover{
+                        background-color:rgba(15, 80, 221, 0.685);
+                    }
+
+                }
+ 
+            }
+
+
+            @media (max-width: 528px) {
+                .hidden_btn_android{
+                    display: none;
+                }
+            }
+
+        }
 
         .height_holder {
             position: absolute;
@@ -97,6 +250,7 @@ body {
                         background-repeat: no-repeat;
                         background-size: cover;
                         transition: 0.4s;
+                        cursor: pointer;
                     }
 
                     .img_card_a {
