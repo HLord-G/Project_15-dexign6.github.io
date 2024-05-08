@@ -12,30 +12,36 @@
 
 
     <script>
-        let imageData = [
-           
-            {
-                img:"",
-                date:"",
-                name:"harold_contene",
-                discriptions:"",
-                group:{
-                    status:false,
-                    gp_name:""
+function getDataImage(numItems, imageData) {
+    // Make an AJAX request to fetch the JSON data
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var jsonData = JSON.parse(xhr.responseText);
+                // Check if the JSON data is an array
+                if (Array.isArray(jsonData)) {
+                    // Push the specified number of items to the imageData array
+                    for (var i = 0; i < numItems && i < jsonData.length; i++) {
+                        imageData.push(jsonData[i]);
+                    }
+                    console.log(imageData); // Logging the imageData array for verification
+                } else {
+                    console.error("Invalid JSON format: Expected an array.");
                 }
-            },
-            {
-                img:"",
-                date:"",
-                name:"wild-dog",
-                discriptions:"",
-                group:{
-                    status:false,
-                    gp_name:""
-                }
+            } else {
+                console.error("Failed to fetch JSON data. Status code: " + xhr.status);
             }
-        
-        ]
+        }
+    };
+    xhr.open("GET", "img_drive.json", true);
+    xhr.send();
+}
+
+// Example usage:
+let imageData = [];
+getDataImage(5, imageData);
+
     </script>
 
 
@@ -46,21 +52,35 @@
     <div class="popup_sums">
         <p><span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-          </svg></span> <span id="mini_sums">Lorem ipsum dolor sit amet consectetur.</span></p>
-
-          <small><small>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quasi dolorem similique delectus eveniet libero optio quam facilis quis rerum?
-          </small></small>
+          </svg></span> <span id="mini_sums"></span></p>
+          <small><small id="mini_sums_desc"></small></small>
     </div>
     <!-- [E] HOVER-POP [E] -->
+
+
+
+
 
     <!-- [S] POPUP VIEW [S] -->
     <div class="view_img">
         <div class="img">
-            <div class="img_display" style="background-image: url(https://img-cdn.pixlr.com/image-generator/history/6636b02bd6e67fd2bda59251/9113fdf6-3f28-4cbb-af08-a7aa15c11984/preview.webp);">sdfasf</div>
+            <div class="close_img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                  </svg>
+            </div>
+
+            <div class="img_display" style="background-image: url(https://img-cdn.pixlr.com/image-generator/history/6636b02bd6e67fd2bda59251/9113fdf6-3f28-4cbb-af08-a7aa15c11984/preview.webp);"> </div>
         </div>
         <div class="discript">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque quasi nostrum autem quis ipsam error impedit. Amet reiciendis, minima deserunt necessitatibus vero reprehenderit doloribus quibusdam accusantium, pariatur perspiciatis mollitia, neque saepe harum cum quidem tenetur veritatis corporis animi maxime exercitationem at! Voluptatum asperiores repudiandae repellendus cupiditate tempora voluptates harum. Necessitatibus dolorem nostrum veniam obcaecati modi officia qui, nobis deleniti consectetur voluptatibus quasi suscipit sapiente architecto voluptas sit cumque delectus aut, cum corrupti. Ipsum, nisi voluptatem exercitationem qui sint placeat at inventore facilis architecto enim mollitia nobis beatae, provident consectetur hic doloremque eligendi numquam maxime tempora laborum perferendis. Magnam voluptatum doloribus laborum et, tempora architecto accusantium odio doloremque ex cumque corporis natus deserunt quidem est molestiae amet qui nulla iure quas expedita, laboriosam quae maxime! Esse, nobis ex fugiat ipsam aspernatur dolorem voluptas quasi mollitia pariatur fuga, commodi, illo unde consectetur dicta error officiis ab odio laboriosam. At blanditiis dolorum error impedit assumenda aperiam adipisci labore exercitationem porro. Quod aliquam enim voluptas dolor commodi rerum suscipit, sapiente quo. Autem harum, deleniti magnam doloremque officia natus repellendus quaerat labore aliquid, dicta cum ad atque qui explicabo tempore. Voluptatibus consectetur fugiat, minima laborum explicabo repellat inventore, ut similique ad doloremque tenetur, nam ex fuga sunt sed alias. Obcaecati perspiciatis vel velit repellat non eveniet cupiditate ullam doloribus? Reiciendis asperiores cupiditate corporis placeat saepe. Alias, sint possimus? Explicabo atque dolorum harum laborum quibusdam et repellat voluptatem at impedit expedita aut nihil, earum fuga blanditiis! Quam soluta iure ipsam dicta dolorum ullam, doloremque eum culpa commodi unde consequuntur modi saepe facere sint harum animi quisquam fugit illum nemo ipsum tempora molestias. Soluta tenetur ea neque cupiditate dolorem minima fugit tempora aspernatur autem veritatis nihil dolores, ut odit hic sapiente nemo quas quis magnam eaque ab a odio voluptas! Esse, doloribus omnis odit possimus doloremque blanditiis impedit similique hic fuga, quia est porro dolores quisquam ullam provident saepe perferendis ipsam, fugit sit rem. Quia quos quae autem minima ipsa harum expedita vitae eum a qui, dignissimos error neque odio, natus totam aliquam tempora ex repellendus nulla placeat assumenda atque. Molestias et ratione inventore, asperiores qui quasi modi vero recusandae illo sint rerum nesciunt doloremque maiores veniam iusto consequatur officiis? Vel quidem maxime deserunt ex in sunt repellat aspernatur sed facilis ipsa quaerat autem, eum perferendis magnam illo dolore, est perspiciatis neque iusto nisi, atque unde quae tenetur! Odio provident repellendus neque optio dignissimos minus eaque, rerum labore, delectus adipisci eos cumque impedit eius rem consequatur nulla tempora deleniti praesentium qui et, ipsum itaque. Beatae voluptatem unde officiis. Suscipit esse tempore ducimus commodi reiciendis consequatur veritatis iure. Dolorum laborum repudiandae odio modi culpa, accusamus temporibus facere maxime molestias numquam omnis error, quasi hic tempora doloribus sunt deserunt pariatur. Impedit facilis saepe voluptatem corporis necessitatibus at autem minus, amet, quod maxime commodi? Itaque dolore culpa id corrupti voluptatibus! Excepturi esse nisi voluptas sapiente quisquam aperiam sunt totam dignissimos rerum adipisci praesentium, vel at cupiditate tempora consequuntur optio, suscipit cum molestiae libero placeat? Sit possimus quos nisi commodi nulla?
+            
+            <div class="dis_header"></div>
+
+            <div class="date"></div>
+
+            <div class="dis_summary"></div>
+
         </div>
     </div>
     <!-- [E] POPUP VIEW [E] -->
@@ -80,51 +100,36 @@
                     <div class="dbtn right_div">
 
                         <div class="swap_data hidden_btn_android">
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                    <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
+                            <button id="solo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
                                   </svg>
                             </button>
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                    <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
-                                  </svg>
-                            </button>
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                    <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
+                            <button id="group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-fill" viewBox="0 0 16 16">
+                                    <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1"/>
                                   </svg>
                             </button>
                         </div>
 
                         <button class="hidden_btn_android">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                    <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                                    <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
+                                  </svg>
                             </span>
                             Name
                         </button>
-                        <button class="hidden_btn_android">
+                        <button class="hidden_btn_android" id="datesort">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                    <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                                    <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
+                                  </svg>
                             </span>
                             Date
                         </button>
-                        <!-- <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-up" viewBox="0 0 16 16">
-                                <path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z"/>
-                                <path fill-rule="evenodd" d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98"/>
-                                <path d="M4.5 13.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707z"/>
-                            </svg>
-                        </button> -->
+                        
 
                     
                     </div>
@@ -134,15 +139,15 @@
                 </div>
 
 
-                <div class="drive_holder">
+                <div class="drive_holder" id="imagedisplayer">
                     
-                    <div class="item">
+                    <div class="item" item_type="solo" date="05182024">
                         <div class="card_full">
-                            <div class="img_card" datacontent="0" style="background-image: url(https://img-cdn.pixlr.com/image-generator/history/6636b02bd6e67fd2bda59251/9113fdf6-3f28-4cbb-af08-a7aa15c11984/preview.webp);"></div>
+                            <div class="img_card" datacontent="0" style="background-image: url();"></div>
                         </div>
                     </div>
 
-                    <div class="item">
+                    <div class="item" item_type="group" date="05092024">
                         <div class="card_full">
                             <div class="img_card"  datacontent="1" style="background-image: url(https://img-cdn.pixlr.com/image-generator/history/6636efea407238389d9fb1cd/ac2ba78f-175f-49ec-9d5a-487eb7caf745/preview.webp);"></div>
                             <div class="img_card_a" style="background-image: url(https://img-cdn.pixlr.com/image-generator/history/6636b02bd6e67fd2bda59251/9113fdf6-3f28-4cbb-af08-a7aa15c11984/preview.webp);"></div>
@@ -151,98 +156,46 @@
                     </div>
 
 
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-            
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-                   
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                            <div class="img_card_a"></div>
-                            <div class="img_card_b"></div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                            <div class="img_card_a"></div>
-                            <div class="img_card_b"></div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
-
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                            <div class="img_card_a"></div>
-                            <div class="img_card_b"></div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card_full">
-                            <div class="img_card"></div>
-                        </div>
-                    </div>
-
 
 
 
                 </div>
             </div>
-
-
-
         </div>
 
 
 
         <script>
+
+            setTimeout(() => {
+                    for (let index = 0; index < imageData.length; index++) {
+                    $("#imagedisplayer").append(`
+                    <div class="item" item_type="solo" date="${imageData[index]["date"]}">
+                            <div class="card_full">
+                                <div class="img_card" datacontent="${index}" style="background-image: url(${imageData[index]["img"]});"></div>
+                            </div>
+                    </div>
+                    `)
+                }
+            }, 1000);
+
+        
+
+        </script>
+
+
+        <script>
             let content_pop_show = false
-            $(".img_card").hover(function(){
+
+            $(document).on("mouseenter", ".img_card", function(){
                 $("#mini_sums").empty()
+                $("#mini_sums_desc").empty()
                 let correntdata =imageData[$(this).attr("datacontent")]["name"]
+                let correntdate_disc = imageData[$(this).attr("datacontent")]["discriptions"]
 
                 if (correntdata === imageData[$(this).attr("datacontent")]["name"]) {
                     $("#mini_sums").html(correntdata)
+                    $("#mini_sums_desc").html(correntdate_disc)
                 }
 
                 
@@ -255,14 +208,14 @@
                         clearInterval(popup_timerShow);
 
                 }, 200);
-
-            },function(){
+            }).on("mouseleave", ".img_card", function(){
                 correntdata =  ""
                 $("#mini_sums").empty()
+                $("#mini_sums_desc").empty()
                 content_pop_show = false
                 $(".popup_sums").hide()
                 clearInterval(popup_timerShow);
-            })
+            });
 
 
 
@@ -270,12 +223,20 @@
 
 
 
+ 
 
 
 
+            $(document).on("click", ".img_card", function(){
+                
+                $(".img_display").attr("style", `background-image: url('${imageData[$(this).attr("datacontent")]["img"]}');`)
+                $(".date").text(imageData[$(this).attr("datacontent")]["date"])
+                $(".dis_header").text(imageData[$(this).attr("datacontent")]["name"])
+                $(".dis_summary").text(imageData[$(this).attr("datacontent")]["discriptions"])
 
-            $(".img_card").click(function(){
                 $(".view_img").fadeIn()
+
+
                 // $("body").css({
                 //     "overflow":"hidden"
                 // })
@@ -284,6 +245,135 @@
                         $(".view_img").css({"display":"flex"})
                 }, 1000);
             })
+
+
+            $(".close_img").click(function(){
+                $(".view_img").fadeOut()
+            })
+
+
+
+
+
+
+
+            var mediaQuery = window.matchMedia(`(max-width: 768px)`);
+            if (mediaQuery.matches) {
+                
+                $(document).on("click", ".discript", function(){
+                    $(".img").css({
+                        "flex":".40"
+                    })
+                    $(".img_display").css({
+                        "background-size":"cover",
+                        "width":"100%",
+                        "height":"100%",
+                        "border-radius": "35px",
+                        "filter": "blur(4px)"
+                    })
+
+                    $(".discript").css({
+                        "flex":"2"
+                    })
+
+                    setTimeout(() => {
+                        $(".discript").css({
+                            "overflow":"auto"
+                        })
+                    }, 300);
+                    
+                })
+
+
+                $(document).on("click", ".img", function(){
+                    $(".img").css({
+                        "flex":"1"
+                    })
+                    $(".img_display").css({
+                        "width":"90%",
+                        "height":"100%",
+                        "border-radius": "unset",
+                        "filter": "blur(0px)"
+                    })
+
+                    setTimeout(() => {
+                        $(".img_display").css({
+                        "background-size":"contain",
+                    })
+                    }, 800);
+
+                    $(".discript").css({
+                        "flex":".25"
+                    })
+
+                    setTimeout(() => {
+                        $(".discript").css({
+                            "overflow":"hidden"
+                        })
+                    }, 300);
+                })
+
+            }else{
+                // alert("bad")
+            }
+            
+ 
+
+
+
+
+
+
+
+
+            let item_type = "solo";
+            $(".item[item_type='group']").hide()
+            $("#solo").click(function(){
+                item_type = "solo"
+                $(".item").fadeOut()
+                $(".item[item_type='solo']").fadeIn()
+            })
+
+            $("#group").click(function(){
+                item_type = "group"
+                $(".item").fadeOut()
+                $(".item[item_type='group']").fadeIn()
+            })
+
+
+
+
+
+
+
+        $('#datesort').click(function() {
+            // Toggle sorting order on each click
+            $('#imagedisplayer').toggleClass('sorted');
+            sortItems();
+        });
+
+        function sortItems() {
+            var $items = $('.item');
+            $items.sort(function(a, b) {
+                var dateA = $(a).attr('date');
+                var dateB = $(b).attr('date');
+
+                // Sort in ascending order
+                if ($('#imagedisplayer').hasClass('sorted')) {
+                    return dateA.localeCompare(dateB);
+                }
+                // Sort in descending order
+                else {
+                    return dateB.localeCompare(dateA);
+                }
+            });
+            $('#imagedisplayer').html($items);
+        }
+
+
+
+
+            
         </script>
 
 </body>
